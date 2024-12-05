@@ -1,0 +1,64 @@
+<div class="container-fluid mt-4">
+    <h2 class="text-left mb-4">{{ isEditing ? 'Modifier Étudiant' : 'Ajouter Étudiant' }}</h2>
+    
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+      
+
+        <div class="row"> <div class="mb-3 col-6">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Nom">
+            <div *ngIf="nom?.invalid && (nom?.dirty || nom?.touched)" class="text-danger">
+              <small *ngIf="nom?.errors?.['required']">Nom is required.</small>
+            </div>
+          </div>
+          
+          <div class="mb-3  col-6">
+            <label for="prenom" class="form-label">Prénom</label>
+            <input type="text" class="form-control" id="prenom" formControlName="prenom" placeholder="Prénom">
+            <div *ngIf="prenom?.invalid && (prenom?.dirty || prenom?.touched)" class="text-danger">
+              <small *ngIf="prenom?.errors?.['required']">Prénom is required.</small>
+            </div>
+          </div>
+          </div>
+        <div class="row">
+            <div class="mb-3  col-6">
+              <label for="specialite" class="form-label">Spécialité</label>
+              <select class="form-control" id="specialite" formControlName="specialite">
+                <option value="" disabled>Spécialité</option>
+                <option *ngFor="let option of specialiteOptions" [value]="option.id">{{ option.name }}</option>
+              </select>
+              <div *ngIf="specialite?.invalid && (specialite?.dirty || specialite?.touched)" class="text-danger">
+                <small *ngIf="specialite?.errors?.['required']">Spécialité is required.</small>
+              </div>
+            </div>
+            
+            <div class="mb-3  col-6">
+              <label for="niveau" class="form-label">Niveau</label>
+              <select class="form-control" id="niveau" formControlName="niveau">
+                <option value="" disabled>Select Niveau</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+              <div *ngIf="niveau?.invalid && (niveau?.dirty || niveau?.touched)" class="text-danger">
+                <small *ngIf="niveau?.errors?.['required']">Niveau is required.</small>
+              </div>
+            </div></div>
+       
+          
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email">
+            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
+              <small *ngIf="email?.errors?.['required']">Email is required.</small>
+              <small *ngIf="email?.errors?.['email']">Email is invalid.</small>
+            </div>
+          </div>
+          
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-secondary border me-2" (click)="annuler()">Annuler</button>
+        <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">{{ isEditing ? 'Modifier' : 'Ajouter' }}</button>
+      </div>
+    </form>
+  </div>
+  

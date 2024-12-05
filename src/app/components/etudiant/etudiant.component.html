@@ -1,0 +1,37 @@
+<div class="container-fluid mt-4">
+    <!-- Dashboard Title -->
+    <h2 class="text-left mb-4">Student</h2>
+
+  
+    <div class="d-flex justify-content-end mb-3">
+      <button class="btn btn-primary" [routerLink]="['/main/gerer-etudiant']">Ajouter</button>
+    </div>
+    
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Spécialité</th>
+            <th scope="col">Niveau</th>
+            <th scope="col">Email</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of students">
+            <td>{{ student.nom }}</td>
+            <td>{{ student.prenom }}</td>
+            <td>{{ student.specialite.name }}</td>
+            <td>{{ student.niveau }}</td>
+            <td>{{ student.email }}</td>
+            <td>
+                <button class="btn btn-success" [routerLink]="['/main/gerer-etudiant', student.id]">Modifier</button>
+                <button class="btn btn-danger ms-2" (click)="delete(student.id)" >Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    
+  </div>
+  

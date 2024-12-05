@@ -1,0 +1,41 @@
+<section class="vh-100 d-flex justify-content-center align-items-center">
+    <div class="card bg-dark text-white" style="border-radius: 1rem; width: 100%; max-width: 500px;">
+      <div class="card-body p-5 text-center"> <!-- Added p-5 for more padding -->
+  
+        <h2 class="fw-bold mb-2">Login</h2>
+        <p class="text-white-50 mb-5">Please enter your login and password</p>
+  
+        <!-- Form group with reactive form -->
+        <form (ngSubmit)="signIn()" [formGroup]="loginForm">
+          
+          <!-- login input -->
+          <div class="form-outline form-white mb-5">
+            <input type="text" id="login" class="form-control form-control-lg" 
+              placeholder="Login" formControlName="login" [class.is-invalid]="login?.invalid && login?.touched" required />
+            <!-- Validation message for login -->
+            <div class="invalid-feedback" *ngIf="login?.invalid && login?.touched">
+              <div *ngIf="login?.errors?.['required']">Login is required.</div>
+              <div *ngIf="login?.errors?.['minlength']">Invalid Login.</div>
+            </div>
+          </div>
+  
+          <!-- Password input -->
+          <div class="form-outline form-white mb-5">
+            <input type="password" id="password" class="form-control form-control-lg"
+              placeholder="Password" formControlName="password" [class.is-invalid]="password?.invalid && password?.touched" required />
+            <!-- Validation message for password -->
+            <div class="invalid-feedback" *ngIf="password?.invalid && password?.touched">
+              <div *ngIf="password?.errors?.['required']">Password is required.</div>
+              <div *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters.</div>
+            </div>
+          </div>
+  
+          <!-- Login button -->
+          <button class="btn btn-outline-light btn-lg px-5 py-2" type="submit" >Login</button>
+  
+        </form>
+  
+      </div>
+    </div>
+  </section>
+  
